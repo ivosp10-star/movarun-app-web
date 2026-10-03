@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <!-- viewport-fit=cover: el contenido usa toda la pantalla y respeta la muesca vía safe-area. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>MOVA</title>
+    <meta name="description" content="Salí a correr. Acompañado. Salidas de running cerca tuyo: elegí tu ritmo y sumate con un toque." />
+    <meta name="theme-color" content="#07141A" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- PWA (spec version-web-pwa §5) -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MOVA" />
+
+    <style id="expo-reset">
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #07141a;
+      }
+      body {
+        overflow: hidden;
+        overscroll-behavior: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+        position: relative;
+      }
+      /* Computadora (spec §6): la app se ve como el celular, en una columna de 430 px
+         centrada; afuera, el mismo fondo de la marca. */
+      @media (min-width: 768px) {
+        #root {
+          max-width: 430px;
+          margin: 0 auto;
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 30px 80px rgba(0, 0, 0, 0.5);
+          /* Lo que la app posiciona "fijo" queda dentro de la columna, no en toda la ventana. */
+          transform: translateZ(0);
+          overflow: hidden;
+        }
+      }
+    </style>
+  <link rel="icon" href="/favicon.ico"/><link rel="preload" href="/_expo/static/css/maplibre-gl-251fdbfda84eb147f0a36795135ef43b.css" as="style">
+<link rel="stylesheet" href="/_expo/static/css/maplibre-gl-251fdbfda84eb147f0a36795135ef43b.css"></head>
+
+  <body>
+    <noscript>Para usar MOVA necesitás activar JavaScript.</noscript>
+    <div id="root"></div>
+  <script src="/_expo/static/js/web/entry-1c2a67388d2b993fe2de8230a4d99cb7.js" defer></script>
+</body>
+</html>
