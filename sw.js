@@ -14,13 +14,21 @@ self.addEventListener('push', (event) => {
   }
   const title = data.title || 'MOVA';
   event.waitUntil(
-    self.registration.showNotification(title, {
-      body: data.body || '',
-      icon: '/icons/icon-192.png',
-      badge: '/icons/badge-96.png',
-      tag: data.tag,
-      data: { url: data.url || '/' },
-    })
+    (async () => {
+      // Aviso de chat con ese mismo chat abierto y en foco: no se muestra (spec avisos-completos §3).
+      if (typeof data.tag === 'string' && data.tag.indexOf('chat_message:') === 0 && data.url) {
+        const path = new URL(data.url, self.location.origin).pathname;
+        const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+        if (windows.some((c) => c.focused && new URL(c.url).pathname === path)) return;
+      }
+      await self.registration.showNotification(title, {
+        body: data.body || '',
+        icon: '/icons/icon-192.png',
+        badge: '/icons/badge-96.png',
+        tag: data.tag,
+        data: { url: data.url || '/' },
+      });
+    })()
   );
 });
 
